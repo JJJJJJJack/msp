@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/print_msp_debug.dir/examples/print_msp_debug.cpp.o  -o print_msp_debug  -Wl,-rpath,/home/jack/src/tool/msp/cmake libmspclient.so -lpthread 
