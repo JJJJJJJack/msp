@@ -34,7 +34,7 @@ include rules.ninja
 # Utility command for install/strip
 
 build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/jack/src/tool/msp/build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  COMMAND = cd /home/xianghe/src/msp/build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -112,7 +112,7 @@ build CMakeFiles/fcu_custom_type.dir/examples/fcu_custom_type.cpp.o: CXX_COMPILE
 
 build fcu_custom_type: CXX_EXECUTABLE_LINKER__fcu_custom_type CMakeFiles/fcu_custom_type.dir/examples/fcu_custom_type.cpp.o | libmsp_fcu.so libmspclient.so || libmsp_fcu.so libmspclient.so
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build  libmsp_fcu.so  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build  libmsp_fcu.so  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/fcu_custom_type.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -146,7 +146,7 @@ build CMakeFiles/print_msp_debug.dir/examples/print_msp_debug.cpp.o: CXX_COMPILE
 
 build print_msp_debug: CXX_EXECUTABLE_LINKER__print_msp_debug CMakeFiles/print_msp_debug.dir/examples/print_msp_debug.cpp.o | libmspclient.so || libmspclient.so
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/print_msp_debug.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -180,7 +180,7 @@ build CMakeFiles/client_read_test.dir/examples/client_read_test.cpp.o: CXX_COMPI
 
 build client_read_test: CXX_EXECUTABLE_LINKER__client_read_test CMakeFiles/client_read_test.dir/examples/client_read_test.cpp.o | libmspclient.so || libmspclient.so
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/client_read_test.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -214,7 +214,7 @@ build CMakeFiles/fcu_motors.dir/examples/fcu_motor_test.cpp.o: CXX_COMPILER__fcu
 
 build fcu_motors: CXX_EXECUTABLE_LINKER__fcu_motors CMakeFiles/fcu_motors.dir/examples/fcu_motor_test.cpp.o | libmsp_fcu.so libmspclient.so || libmsp_fcu.so libmspclient.so
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build  libmsp_fcu.so  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build  libmsp_fcu.so  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/fcu_motors.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -248,7 +248,7 @@ build CMakeFiles/client_async_test.dir/examples/client_async_test.cpp.o: CXX_COM
 
 build client_async_test: CXX_EXECUTABLE_LINKER__client_async_test CMakeFiles/client_async_test.dir/examples/client_async_test.cpp.o | libmspclient.so || libmspclient.so
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/client_async_test.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -260,7 +260,7 @@ build client_async_test: CXX_EXECUTABLE_LINKER__client_async_test CMakeFiles/cli
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/jack/src/tool/msp/build && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/xianghe/src/msp/build && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -271,7 +271,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/jack/src/tool/msp/build && /usr/bin/cmake -S/home/jack/src/tool/msp -B/home/jack/src/tool/msp/build
+  COMMAND = cd /home/xianghe/src/msp/build && /usr/bin/cmake -S/home/xianghe/src/msp -B/home/xianghe/src/msp/build
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -305,7 +305,7 @@ build CMakeFiles/fcu_test.dir/examples/fcu_test.cpp.o: CXX_COMPILER__fcu_test ..
 
 build fcu_test: CXX_EXECUTABLE_LINKER__fcu_test CMakeFiles/fcu_test.dir/examples/fcu_test.cpp.o | libmsp_fcu.so libmspclient.so || libmsp_fcu.so libmspclient.so
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build  libmsp_fcu.so  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build  libmsp_fcu.so  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/fcu_test.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -323,7 +323,7 @@ build list_install_components: phony
 # Utility command for install
 
 build CMakeFiles/install.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/jack/src/tool/msp/build && /usr/bin/cmake -P cmake_install.cmake
+  COMMAND = cd /home/xianghe/src/msp/build && /usr/bin/cmake -P cmake_install.cmake
   DESC = Install the project...
   pool = console
   restat = 1
@@ -357,7 +357,7 @@ build CMakeFiles/msp_fcu.dir/src/FlightController.cpp.o: CXX_COMPILER__msp_fcu .
 
 build libmsp_fcu.so: CXX_SHARED_LIBRARY_LINKER__msp_fcu CMakeFiles/msp_fcu.dir/src/FlightController.cpp.o | libmspclient.so || libmspclient.so
   LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/jack/src/tool/msp/build:  libmspclient.so  -lpthread
+  LINK_LIBRARIES = -Wl,-rpath,/home/xianghe/src/msp/build:  libmspclient.so  -lpthread
   OBJECT_DIR = CMakeFiles/msp_fcu.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -371,7 +371,7 @@ build libmsp_fcu.so: CXX_SHARED_LIBRARY_LINKER__msp_fcu CMakeFiles/msp_fcu.dir/s
 # Utility command for install/local
 
 build CMakeFiles/install/local.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/jack/src/tool/msp/build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  COMMAND = cd /home/xianghe/src/msp/build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -391,7 +391,7 @@ build mspclient: phony libmspclient.so
 # =============================================================================
 
 #############################################
-# Folder: /home/jack/src/tool/msp/build
+# Folder: /home/xianghe/src/msp/build
 
 build all: phony libmspclient.so fcu_custom_type print_msp_debug client_read_test fcu_motors client_async_test fcu_test libmsp_fcu.so
 
