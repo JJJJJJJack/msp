@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /home/jack/src/tool/msp/build/CMakeFiles/install/strip.dir
 /home/jack/src/tool/msp/build/CMakeFiles/mspclient.dir
 /home/jack/src/tool/msp/build/CMakeFiles/install/local.dir
@@ -13,3 +14,19 @@
 /home/jack/src/tool/msp/build/CMakeFiles/fcu_test.dir
 /home/jack/src/tool/msp/build/CMakeFiles/list_install_components.dir
 /home/jack/src/tool/msp/build/CMakeFiles/install.dir
+=======
+/home/xianghe/src/msp/build/CMakeFiles/install/strip.dir
+/home/xianghe/src/msp/build/CMakeFiles/mspclient.dir
+/home/xianghe/src/msp/build/CMakeFiles/fcu_custom_type.dir
+/home/xianghe/src/msp/build/CMakeFiles/print_msp_debug.dir
+/home/xianghe/src/msp/build/CMakeFiles/client_read_test.dir
+/home/xianghe/src/msp/build/CMakeFiles/fcu_motors.dir
+/home/xianghe/src/msp/build/CMakeFiles/client_async_test.dir
+/home/xianghe/src/msp/build/CMakeFiles/edit_cache.dir
+/home/xianghe/src/msp/build/CMakeFiles/rebuild_cache.dir
+/home/xianghe/src/msp/build/CMakeFiles/fcu_test.dir
+/home/xianghe/src/msp/build/CMakeFiles/list_install_components.dir
+/home/xianghe/src/msp/build/CMakeFiles/install.dir
+/home/xianghe/src/msp/build/CMakeFiles/msp_fcu.dir
+/home/xianghe/src/msp/build/CMakeFiles/install/local.dir
+>>>>>>> a206f099f5f6e4105a6d164f0b30943ee8d53f8b

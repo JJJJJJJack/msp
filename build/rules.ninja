@@ -194,7 +194,7 @@ rule CXX_EXECUTABLE_LINKER__fcu_test
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake -S/home/jack/src/tool/msp -B/home/jack/src/tool/msp/build
+  command = /usr/bin/cmake -S/home/xianghe/src/msp -B/home/xianghe/src/msp/build
   description = Re-running CMake...
   generator = 1
 
