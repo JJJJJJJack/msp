@@ -4435,7 +4435,7 @@ struct SetWp : public Message {
     SetWp(FirmwareVariant v) : Message(v) {}
 
     virtual ID id() const override { return ID::MSP_SET_WP; }
-
+    /*
     Value<uint8_t> wp_no;
     Value<uint8_t> action;
     Value<uint32_t> lat;
@@ -4446,23 +4446,26 @@ struct SetWp : public Message {
     Value<uint16_t> p2;
     Value<uint16_t> p3;
     Value<uint8_t> nav_flag;
+    */
+  
+    Value<uint32_t> msg1;
+    Value<uint32_t> msg2;
+    Value<uint32_t> msg3;
+    Value<uint32_t> msg4;
+    Value<uint32_t> msg5;
+    Value<uint32_t> msg6;
+    Value<uint32_t> msg7;
 
     virtual ByteVectorUptr encode() const override {
         ByteVectorUptr data = std::make_unique<ByteVector>();
         bool rc             = true;
-        rc &= data->pack(wp_no);
-        if(fw_variant == FirmwareVariant::INAV) {
-            rc &= data->pack(action);
-        }
-        rc &= data->pack(lat);
-        rc &= data->pack(lon);
-        rc &= data->pack(alt);
-        rc &= data->pack(p1);
-        rc &= data->pack(p2);
-        if(fw_variant == FirmwareVariant::INAV) {
-            rc &= data->pack(p3);
-        }
-        rc &= data->pack(nav_flag);
+        rc &= data->pack(msg1);
+	rc &= data->pack(msg2);
+	rc &= data->pack(msg3);
+	rc &= data->pack(msg4);
+	rc &= data->pack(msg5);
+	rc &= data->pack(msg6);
+	rc &= data->pack(msg7);
         return data;
     }
 };

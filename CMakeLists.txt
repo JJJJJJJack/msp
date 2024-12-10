@@ -96,6 +96,9 @@ if(BUILD_EXAMPLES)
     add_executable(print_msp_debug examples/print_msp_debug.cpp)
     target_link_libraries(print_msp_debug mspclient)
 
+    add_executable(debug_msp_send_receive examples/debug_msp_send_receive.cpp)
+    target_link_libraries(debug_msp_send_receive mspclient)
+
     # client test for blocking read
     add_executable(client_read_test examples/client_read_test.cpp)
     target_link_libraries(client_read_test mspclient)
