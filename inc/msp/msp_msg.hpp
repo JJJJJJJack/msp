@@ -4430,44 +4430,120 @@ struct ResetConfig : public Message {
     virtual ID id() const override { return ID::MSP_RESET_CONF; }
 };
 
-// MSP_SET_WP: 209
+// // MSP_SET_WP: 209
+// struct SetWp : public Message {
+//     SetWp(FirmwareVariant v) : Message(v) {}
+
+//     virtual ID id() const override { return ID::MSP_SET_WP; }
+//     /*
+//     Value<uint8_t> wp_no;
+//     Value<uint8_t> action;
+//     Value<uint32_t> lat;
+//     Value<uint32_t> lon;
+//     Value<uint32_t> alt;
+
+//     Value<uint16_t> p1;
+//     Value<uint16_t> p2;
+//     Value<uint16_t> p3;
+//     Value<uint8_t> nav_flag;
+//     */
+  
+//     Value<uint32_t> msg1;
+//     Value<uint32_t> msg2;
+//     Value<uint32_t> msg3;
+//     Value<uint32_t> msg4;
+//     Value<uint32_t> msg5;
+//     Value<uint32_t> msg6;
+//     Value<uint32_t> msg7;
+
+//     virtual ByteVectorUptr encode() const override {
+//         ByteVectorUptr data = std::make_unique<ByteVector>();
+//         bool rc             = true;
+//         rc &= data->pack(msg1);
+// 	rc &= data->pack(msg2);
+// 	rc &= data->pack(msg3);
+// 	rc &= data->pack(msg4);
+// 	rc &= data->pack(msg5);
+// 	rc &= data->pack(msg6);
+// 	rc &= data->pack(msg7);
+//         return data;
+//     }
+// };
+
+// 先在文件头部补充 ServoRotorMixer_t 结构体定义（如果未定义）
+typedef struct {
+    // 所有坐标定义为NED
+    // ---------------- 硬件/固定参数（需存储） ----------------
+    int16_t LiftCenter[3];       // 转动中心相对重心 单位 mm [xo,yo,zo]
+    int16_t RotationAxis[3];     // 推力转轴方向 1000 -> 1 [xr,yr,zr] 
+    int16_t t0[3];               // θ=0时推力初始方向 1000 -> 1 [xt,yt,zt]
+    int16_t T_eq;                // 平衡点推力（标量）mN
+    int16_t theta_eq;            // 平衡点倾转角（弧度）mRAD
+    int8_t prop_rot_dir;        // 螺旋桨旋转方向，标量，CCW=1
+    uint16_t tau_scaler[3];     // 三轴力矩比例系数 [X,Y,Z]（int16，标定用）
+} ServoRotorMixer_t;
+
 struct SetWp : public Message {
     SetWp(FirmwareVariant v) : Message(v) {}
 
     virtual ID id() const override { return ID::MSP_SET_WP; }
-    /*
-    Value<uint8_t> wp_no;
-    Value<uint8_t> action;
-    Value<uint32_t> lat;
-    Value<uint32_t> lon;
-    Value<uint32_t> alt;
 
-    Value<uint16_t> p1;
-    Value<uint16_t> p2;
-    Value<uint16_t> p3;
-    Value<uint8_t> nav_flag;
-    */
-  
-    Value<uint32_t> msg1;
-    Value<uint32_t> msg2;
-    Value<uint32_t> msg3;
-    Value<uint32_t> msg4;
-    Value<uint32_t> msg5;
-    Value<uint32_t> msg6;
-    Value<uint32_t> msg7;
+    // 绑定自定义的 ServoRotorMixer_t 结构体
+    ServoRotorMixer_t mixer_data;
 
+    // 编码逻辑：将 ServoRotorMixer_t 打包为字节流（MSP发送用）
     virtual ByteVectorUptr encode() const override {
         ByteVectorUptr data = std::make_unique<ByteVector>();
-        bool rc             = true;
-        rc &= data->pack(msg1);
-	rc &= data->pack(msg2);
-	rc &= data->pack(msg3);
-	rc &= data->pack(msg4);
-	rc &= data->pack(msg5);
-	rc &= data->pack(msg6);
-	rc &= data->pack(msg7);
+        bool rc = true;
+
+        // 1. 打包 LiftCenter[3] (int16_t[3])
+        rc &= data->pack<int16_t>(mixer_data.LiftCenter[0]);
+        rc &= data->pack<int16_t>(mixer_data.LiftCenter[1]);
+        rc &= data->pack<int16_t>(mixer_data.LiftCenter[2]);
+
+        // 2. 打包 RotationAxis[3] (int16_t[3])
+        rc &= data->pack<int16_t>(mixer_data.RotationAxis[0]);
+        rc &= data->pack<int16_t>(mixer_data.RotationAxis[1]);
+        rc &= data->pack<int16_t>(mixer_data.RotationAxis[2]);
+
+        // 3. 打包 t0[3] (int16_t[3])
+        rc &= data->pack<int16_t>(mixer_data.t0[0]);
+        rc &= data->pack<int16_t>(mixer_data.t0[1]);
+        rc &= data->pack<int16_t>(mixer_data.t0[2]);
+
+        // 4. 打包 T_eq (int16_t)
+        rc &= data->pack<int16_t>(mixer_data.T_eq);
+
+        // 5. 打包 theta_eq (int16_t)
+        rc &= data->pack<int16_t>(mixer_data.theta_eq);
+
+        // 6. 打包 prop_rot_dir (int8_t)
+        rc &= data->pack<int8_t>(mixer_data.prop_rot_dir);
+
+        // 7. 打包 tau_scaler[3] (uint16_t[3])
+        rc &= data->pack<uint16_t>(mixer_data.tau_scaler[0]);
+        rc &= data->pack<uint16_t>(mixer_data.tau_scaler[1]);
+        rc &= data->pack<uint16_t>(mixer_data.tau_scaler[2]);
+
+        // 编码失败时重置数据
+        if (!rc) {
+            data.reset();
+        }
         return data;
     }
+
+    // // 打印逻辑（可选，调试用）
+    // virtual std::ostream& print(std::ostream& s) const override {
+    //     s << "#ServoRotorMixer Data (MSP_SET_WP):" << std::endl;
+    //     s << " LiftCenter: [" << mixer_data.LiftCenter[0] << ", " << mixer_data.LiftCenter[1] << ", " << mixer_data.LiftCenter[2] << "]" << std::endl;
+    //     s << " RotationAxis: [" << mixer_data.RotationAxis[0] << ", " << mixer_data.RotationAxis[1] << ", " << mixer_data.RotationAxis[2] << "]" << std::endl;
+    //     s << " t0: [" << mixer_data.t0[0] << ", " << mixer_data.t0[1] << ", " <<< mixer_data.t0[2] << "]" << std::endl;
+    //     s << " T_eq: " << mixer_data.T_eq << " mN" << std::endl;
+    //     s << " theta_eq: " << mixer_data.theta_eq << " mRAD" << std::endl;
+    //     s << " prop_rot_dir: " << (int)mixer_data.prop_rot_dir << " (CCW=1)" << std::endl;
+    //     s << " tau_scaler: [" << mixer_data.tau_scaler[0] << ", " << mixer_data.tau_scaler[1] << ", " << mixer_data.tau_scaler[2] << "]" << std::endl;
+    //     return s;
+    // }
 };
 
 // MSP_SELECT_SETTING: 210
